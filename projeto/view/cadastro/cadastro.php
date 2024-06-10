@@ -93,7 +93,7 @@
         <div class="column">
           <div class="form-group">
             <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha" placeholder="Digite sua senha..." required>
+            <input type="password" minlength="8" maxlength="8" id="senha" name="senha" placeholder="Digite sua senha..." required>
             <p class="error-message"></p>
           </div>
           <div class="form-group">

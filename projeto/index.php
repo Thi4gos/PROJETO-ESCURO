@@ -13,6 +13,7 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['senha'])) {
 // Se estiverem definidos, o usuário está logado
 $logado = $_SESSION['email'];
 $nomeUsuario = $_SESSION['nome']; // Obtém o nome do usuário da sessão
+$tipoAcesso = $_SESSION['tipo_acesso']; // Obtém o tipo de acesso do usuário da sessão
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +46,7 @@ $nomeUsuario = $_SESSION['nome']; // Obtém o nome do usuário da sessão
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="index.php" class="active">Home</a></li>
-          <li class="dropdown"><a href="#"><span>Sobre</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#"><span>Sobre</span><i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="view/testimonials.html">Depoimentos</a></li>
             </ul>
@@ -54,6 +55,10 @@ $nomeUsuario = $_SESSION['nome']; // Obtém o nome do usuário da sessão
           <li><a href="view/contact.html">Contato</a></li>
           <?php if (isset($nomeUsuario)): ?>
             <li><a href="#">Olá, <?php echo $nomeUsuario; ?></a></li>
+            <?php if ($tipoAcesso == 'admin'): ?>
+              <li><a href="admin_dashboard.php">Admin Dashboard</a></li>
+              <!-- Adicione mais links administrativos conforme necessário -->
+            <?php endif; ?>
             <li><a href="logout.php">Logout</a></li>
           <?php else: ?>
             <li><a href="view/login/login.php">Login</a></li>

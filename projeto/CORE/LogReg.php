@@ -10,7 +10,7 @@ $email = $_POST['email'];
 $senha = $_POST['senha'];
 
 // Preparando a consulta SQL
-$sql = "SELECT id, senha, nomeCompleto FROM usuarios WHERE email = $email";
+$sql = "SELECT id, senha, nomeCompleto FROM usuarios WHERE email = ?";
 $stmt = $conn->prepare($sql);
 
 if ($stmt) {
@@ -36,19 +36,20 @@ if ($stmt) {
             $_SESSION['senha'] = $hashed_password; // Armazene a senha criptografada na sessão para verificação posterior
             $_SESSION['nome'] = $nome_completo; // Armazene o nome completo na sessão
 
-            header("Location: ../../index.php");  // Redirecionar para a página principal
+            // Redirecionar para a página principal
+            echo json_encode(['success' => true]);
             exit();
         } else {
-            echo "Senha incorreta.";
+            echo json_encode(['success' => false, 'message' => 'Senha incorreta.']);
         }
     } else {
-        echo "Usuário não encontrado.";
+        echo json_encode(['success' => false, 'message' => 'Usuário não encontrado.']);
     }
 
     // Fechar a declaração
     $stmt->close();
 } else {
-    echo "Erro na preparação da consulta: " . $conn->error;
+    echo json_encode(['success' => false, 'message' => 'Erro na preparação da consulta: ' . $conn->error]);
 }
 
 // Fechar a conexão

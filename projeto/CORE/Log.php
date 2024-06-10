@@ -38,4 +38,3 @@ if (isset($_POST['usuario']) && isset($_POST['senha'])) {
 }
 
 echo json_encode($response);
-?>
