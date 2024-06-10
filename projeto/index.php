@@ -53,6 +53,7 @@ $tipoAcesso = $_SESSION['tipo_acesso']; // Obtém o tipo de acesso do usuário d
           </li>
           <li><a href="view/services.html">Serviços</a></li>
           <li><a href="view/contact.html">Contato</a></li>
+          <!-- MENU ADAPTATIVO CONFORME ACESSO -->
           <?php if (isset($nomeUsuario)): ?>
             <li><a href="#">Olá, <?php echo $nomeUsuario; ?></a></li>
             <?php if ($tipoAcesso == 'admin'): ?>
