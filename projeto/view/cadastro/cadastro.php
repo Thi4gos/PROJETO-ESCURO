@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Escuro Internet - Cadastro</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../../assets/vendor/fontawesome/css/fontawesome.min.css">
+  <link rel="stylesheet" href="../../assets/vendor/fontawesome/css/fontawesome.css">
 </head>
-
 <body>
   <div class="container">
     <a href="../index.html"><img src="../logo.png" class="logo"></a>
@@ -17,7 +17,7 @@
         <div class="column">
           <div class="form-group">
             <label for="nomeCompleto">Nome completo:</label>
-            <input type="text" id="nomeCompleto" name="nomeCompleto" pattern="[a-zA-Z]{15,80}"
+            <input type="text" id="nomeCompleto" name="nomeCompleto" pattern="[a-zA-Z]{10,80}"
               title="O nome deve conter apenas letras e ter entre 15 e 80 caracteres." placeholder="Digite seu nome..."
               required>
             <p class="error-message"></p>
@@ -91,16 +91,18 @@
           </div>        
         </div>        
         <div class="column">
-          <div class="form-group">
+          <div class="form-group pass-vision">
             <label for="senha">Senha:</label>
             <input type="password" minlength="8" maxlength="8" id="senha" name="senha" placeholder="Digite sua senha..." required>
             <p class="error-message"></p>
+            <i id="togglePassword" class="fa-solid fa-eye-slash"></i>
           </div>
-          <div class="form-group">
+          <div class="form-group pass-vision">
             <label for="confirmarSenha">Confirmação da Senha:</label>
             <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Confirme sua Senha..."
               required>
             <p class="error-message"></p>
+            <i id="togglePassword" class="fa-solid fa-eye-slash"></i>
           </div>
         </div>
       </div>
@@ -112,6 +114,8 @@
     </form>
   </div>
   <script src="script.js"></script>
+  <script src="../../assets/vendor/fontawesome/js/fontawesome.min.js"></script>
+  <script src="https://kit.fontawesome.com/750fd61948.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

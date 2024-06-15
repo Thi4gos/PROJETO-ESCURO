@@ -1,27 +1,12 @@
 <?php 
-session_start();
-
-// Verificar se o email e a senha estão definidos na sessão
-if (!isset($_SESSION['email']) || !isset($_SESSION['senha'])) {
-    // Se não estiverem, desfazer as variáveis de sessão e redirecionar para a página de login
-    unset($_SESSION['email']);
-    unset($_SESSION['senha']);
-    header('location: view/login/login.php');
-    exit;
-}
-
-// Se estiverem definidos, o usuário está logado
-$logado = $_SESSION['email'];
-$nomeUsuario = $_SESSION['nome']; // Obtém o nome do usuário da sessão
-$tipoAcesso = $_SESSION['tipo_acesso']; // Obtém o tipo de acesso do usuário da sessão
+  require_once "CORE/ValidSessao.php"
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+  <title>Escuro Internet</title>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Escuro Internet</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
   <link href="assets/img/Escuro logo.png" rel="icon">
@@ -219,8 +204,7 @@ $tipoAcesso = $_SESSION['tipo_acesso']; // Obtém o tipo de acesso do usuário d
       </div>
     </section><!-- End Services Section -->
 
-  </main><!-- End #main -->
-  <!-- ======= Footer ======= -->
+  </main>
   <footer id="footer">
     <div class="footer-top">
       <div class="container">
@@ -258,8 +242,7 @@ $tipoAcesso = $_SESSION['tipo_acesso']; // Obtém o tipo de acesso do usuário d
     </div>
 
 
-  </footer><!-- End Footer -->
-
+  </footer>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

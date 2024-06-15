@@ -9,17 +9,17 @@
 
 <body>
     <div class="container">
-        <form id="loginForm" action="../../CORE/log.php" method="post">
+        <form id="loginForm" action="../../CORE/LogReg.php" method="post">
             <a href="../../index.html"><img src="../../assets/img/" class="logo"></a>
             <h1>Login</h1>
-            <label for="usuario">Usuário:</label>
+            <label for="usuario">Email:</label>
             <input type="text" id="email" name="email" placeholder="Digite seu email..." required>
             <span id="usuarioError" class="error"></span>
             <label for="senha">Senha:</label>
             <input type="password" id="senha" name="senha" placeholder="Digite sua Senha..." required>
             <span id="senhaError" class="error"></span>
             <input type="submit" value="Enviar">
-            <input type="button" value="Voltar" onclick="window.location.href='index.php'">
+            <input type="button" value="Voltar" onclick="window.location.href='../cadastro/cadastro.php'">
             Não consegue acessar sua conta? <a href="../alterPassView.php">Clique aqui</a>
             Não cadastrado? <a href="../cadastro/cadastro.php">click aqui</a>
         </form>

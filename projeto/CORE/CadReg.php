@@ -20,7 +20,28 @@ $complemento = $_POST['complemento'];
 $sexo = $_POST['sexo'];
 $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);  // Criptografando a senha
 
-// Preparando a consulta SQL
+// Verificar se o email já existe
+$sql_check_email = "SELECT email FROM usuarios WHERE email = ?";
+$stmt_check_email = $conn->prepare($sql_check_email);
+
+if ($stmt_check_email) {
+    $stmt_check_email->bind_param("s", $email);
+    $stmt_check_email->execute();
+    $stmt_check_email->store_result();
+
+    if ($stmt_check_email->num_rows > 0) {
+        // Redirecionar para a página de cadastro com parâmetro de erro
+        header("Location: ../view/cadastro/cadastro.php?error-email=true");
+        exit();
+    }
+
+    $stmt_check_email->close();
+} else {
+    echo "Erro na preparação da consulta de verificação de email: " . $conn->error;
+    exit();
+}
+
+// Preparando a consulta SQL para inserção
 $sql = "INSERT INTO usuarios (nome_completo, nome_materno, cpf, telefone_celular, telefone_fixo, data_nascimento, email, bairro, cep, logradouro, estado, cidade, numero, complemento, sexo, senha)
 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -32,10 +53,8 @@ if ($stmt) {
 
     // Executando a consulta
     if ($stmt->execute()) {
-        // echo "Registro inserido com sucesso!";
         header('Location: ../view/login/login.php');
     } else {
-        // echo "Erro ao inserir registro: " . $stmt->error;
         header('Location: erro.php');
     }
 

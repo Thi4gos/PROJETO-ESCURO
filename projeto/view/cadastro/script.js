@@ -6,7 +6,7 @@ const errorNomeCompletoParagraph = document.getElementById('errorNomeCompleto');
 // Adiciona um ouvinte de evento para detectar alterações no campo de nome completo
 nomeCompletoInput.addEventListener('input', function () {
     // Verifica se o valor do campo de nome completo não corresponde ao padrão especificado
-    if (!this.value.match(/^[a-zA-Z ]{15,80}$/)) {
+    if (!this.value.match(/^[a-zA-Z\s]{15,80}$/)) {
         // Exibe mensagem de erro e adiciona a classe 'error' ao campo de entrada
         errorNomeCompletoParagraph.textContent = 'O nome deve conter apenas letras e ter entre 15 e 80 caracteres.';
         this.classList.add('error');
@@ -16,6 +16,7 @@ nomeCompletoInput.addEventListener('input', function () {
         this.classList.remove('error');
     }
 });
+
 
 // Validação de CPF
 // Obtém os elementos de entrada e de mensagem de erro para o CPF
@@ -111,12 +112,16 @@ telefoneFixoInput.addEventListener('input', function () {
 // Função para formatar o número de telefone
 function formatarTelefone(value) {
     if (value.length === 11) {
-        return value.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3"); // Formata celular
-    } else if (value.length === 10) {
-        return value.replace(/(\d{2})(\d{4})(\d{4})/, "($1) $2-$3"); // Formata fixo
+        // Formata celular
+        return value.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
+    } else if (value.length === 11) {
+        // Formata fixo
+        return value.replace(/(\d{2})(\d{4})(\d{4})/, "($1) $2-$3");
     }
-    return value; // Retorna o valor não formatado se não corresponder aos tamanhos esperados
+    // Retorna o valor não formatado se não corresponder aos tamanhos esperados
+    return value;
 }
+
 
 // Função para validar o número de telefone
 function validarTelefone(input) {
@@ -301,3 +306,30 @@ function validarCPF(cpf) {
 
     return true;
 }
+
+// validacao.js
+document.addEventListener('DOMContentLoaded', function () {
+    const errorEmailParagraph = document.getElementById('error-email');
+    const email = new URLSearchParams(window.location.search).get('error-email');
+
+    if (email) {
+        errorEmailParagraph.textContent = 'O email já está cadastrado.';
+        errorEmailParagraph.classList.add('error');
+    }
+});
+
+// JavaScript para alternar a visibilidade da senha
+document.addEventListener('DOMContentLoaded', function () {
+    const togglePassword = document.getElementById('togglePassword');
+    const senhaInput = document.getElementById('senha');
+
+    togglePassword.addEventListener('click', function () {
+        // Alterna entre text e password
+        const type = senhaInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        senhaInput.setAttribute('type', type);
+
+        // Alterna entre ícone de olho aberto e fechado
+        this.classList.toggle('fa-eye-slash');
+        this.classList.toggle('fa-eye');
+    });
+});

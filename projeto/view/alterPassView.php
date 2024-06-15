@@ -22,7 +22,7 @@
   <link href="../assets/css/style.css" rel="stylesheet">
 </head>
 <body>
-  <!-- ======= Header ======= -->
+  ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center">
       <a href="../index.html" class="logo me-auto"><img src="img/Escuro logo.png" alt="Logo Escuro"
@@ -41,9 +41,9 @@
           <li><a href="../login e cadastro/cadastro.html" class="getstarted">Cadastre-se</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+      </nav>.navbar -->
     </div>
-  </header><!-- End Header -->
+  </header>End Header -->
   <div class="container">
     <h2 class="text-center mb-4">Alterar Senha</h2>
     <form action="../CORE/alterPass.php" method="post">

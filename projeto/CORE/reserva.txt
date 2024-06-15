@@ -4,6 +4,11 @@ $nomeCompleto, $nomeMaterno, $cpf, $telefoneCelular, $telefoneFixo, $dataNascime
 $email = 'usuario@gmail.com'; // Email do usuário que está fazendo login
 $senha = 'senha_do_usuario'; // Senha do usuário
 
+<?php // Se estiverem definidos, o usuário está logado
+$logado = $_SESSION['email'];
+$nomeUsuario = $_SESSION['nome']; // Obtém o nome do usuário da sessão
+$tipoAcesso = $_SESSION['tipo_acesso']; // Obtém o tipo de acesso do usuário da sessão
+?>
 
 CÓDIGO VALIDAÇÃO ANTIGO
 

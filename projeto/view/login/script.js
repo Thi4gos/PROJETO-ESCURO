@@ -9,31 +9,25 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
     var senhaValue = senhaInput.value.trim();
     var formIsValid = true;
 
-    // Validação do usuário
-    if (usuarioValue.length < 7) {
-        usuarioError.textContent = "O usuário deve conter pelo menos 7 caracteres.";
-        usuarioError.style.display = "block";
-        usuarioInput.style.borderColor = "red";
-        usuarioInput.focus();
-        formIsValid = false;
-    } else {
-        usuarioError.textContent = "";
-        usuarioError.style.display = "none";
-        usuarioInput.style.borderColor = "#ccc";
+    // Função de validação de campos
+    function validateField(input, errorElement, minLength, errorMessage) {
+        if (input.value.trim().length < minLength) {
+            errorElement.textContent = errorMessage;
+            errorElement.style.display = "block";
+            input.style.borderColor = "red";
+            input.focus();
+            return false;
+        } else {
+            errorElement.textContent = "";
+            errorElement.style.display = "none";
+            input.style.borderColor = "#ccc";
+            return true;
+        }
     }
 
-    // Validação da senha
-    if (senhaValue.length < 8) {
-        senhaError.textContent = "A senha deve conter pelo menos 8 caracteres.";
-        senhaError.style.display = "block";
-        senhaInput.style.borderColor = "red";
-        senhaInput.focus();
-        formIsValid = false;
-    } else {
-        senhaError.textContent = "";
-        senhaError.style.display = "none";
-        senhaInput.style.borderColor = "#ccc";
-    }
+    // Validação do usuário e senha
+    formIsValid = validateField(usuarioInput, usuarioError, 7, "O usuário deve conter pelo menos 7 caracteres.") && formIsValid;
+    formIsValid = validateField(senhaInput, senhaError, 8, "A senha deve conter pelo menos 8 caracteres.") && formIsValid;
 
     // Se o formulário for válido, envia a requisição para o backend
     if (formIsValid) {
@@ -41,15 +35,15 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
         formData.append('email', usuarioValue);
         formData.append('senha', senhaValue);
 
-        fetch('../../CORE/log.php', {
+        fetch('../../CORE/LogReg.php', {
             method: 'POST',
             body: formData
         })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                // Comentando a linha de redirecionamento
-                // window.location.href = '../../index.php';
+                // Redireciona se login for bem-sucedido
+                window.location.href = data.redirect;
             } else {
                 // Exibe a mensagem de erro retornada pelo backend
                 if (data.message.includes("senha")) {
