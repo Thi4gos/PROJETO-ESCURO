@@ -1,5 +1,5 @@
 document.getElementById("loginForm").addEventListener("submit", function (event) {
-    event.preventDefault();
+    //event.preventDefault();
 
     var usuarioInput = document.getElementById("email");
     var usuarioError = document.getElementById("usuarioError");
@@ -58,7 +58,7 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
             }
         })
         .catch(error => {
-            console.error('Erro ao tentar fazer login:', error);
+            return error;
         });
     }
 });

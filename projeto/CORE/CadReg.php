@@ -18,7 +18,7 @@ $cidade = $_POST['cidade'];
 $numero = $_POST['numero'];
 $complemento = $_POST['complemento'];
 $sexo = $_POST['sexo'];
-$senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);  // Criptografando a senha
+$senha = $_POST['senha']; // Agora estamos salvando a senha sem criptografia
 
 // Verificar se o email já existe
 $sql_check_email = "SELECT email FROM usuarios WHERE email = ?";

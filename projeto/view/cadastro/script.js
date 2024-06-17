@@ -18,6 +18,7 @@ nomeCompletoInput.addEventListener('input', function () {
 });
 
 
+
 // Validação de CPF
 // Obtém os elementos de entrada e de mensagem de erro para o CPF
 const cpfInput = document.getElementById('cpf');

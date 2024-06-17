@@ -1,3 +1,4 @@
+<?php
 function registrarLog($conn, $usuarioId, $acao, $detalhes = null) {
     $ip = $_SERVER['REMOTE_ADDR'];
     $sql = "INSERT INTO log (usuario_id, acao, ip, detalhes) VALUES (?, ?, ?, ?)";
